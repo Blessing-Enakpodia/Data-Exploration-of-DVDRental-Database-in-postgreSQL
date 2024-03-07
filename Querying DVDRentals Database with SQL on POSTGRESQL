@@ -1,8 +1,9 @@
 -- What is the name of the customer who made the highest total payments?
-SELECT c.name,sum(amount) total_amount
+SELECT c.name,
+       SUM(amount) total_amount
 FROM customer_list c
 LEFT JOIN payment p
-ON c.id=p.customer_id
+  ON c.id= p.customer_id
 GROUP BY c.name
 ORDER BY total_amount DESC
 LIMIT 1;
@@ -40,7 +41,7 @@ USING(actor_id)
 GROUP BY a.first_name, a.last_name
 ORDER BY total_films DESC;
 
--- Display the names of the actora that have acted in more than 20 movies.
+-- Display the names of the actors that have acted in more than 20 movies.
 SELECT 
 	CONCAT(a.first_name, ' ', a.last_name), COUNT(film_id) total_films
 FROM actor a
@@ -120,7 +121,7 @@ GROUP BY f.rating
 ORDER BY total_rental DESC;
 
 -- Display the profit of each of the stores
-SELECT i.store_id, SUM(amount)
+SELECT i.store_id, SUM(amount) total_profit
 FROM payment p
 LEFT JOIN rental r
 USING(rental_id)
